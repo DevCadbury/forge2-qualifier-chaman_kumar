@@ -1,11 +1,9 @@
 services:
   - type: web
     name: forge2-qualifier-chaman-api
-    # Docker runtime — Render builds from the Dockerfile in backend/
     runtime: docker
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
-    # Render free tier
     plan: free
     envVars:
       - key: APP_ENV
@@ -15,7 +13,7 @@ services:
       - key: APP_KEY
         generateValue: true
       - key: APP_URL
-        sync: false          # fill in after first deploy with the Render URL
+        sync: false
       - key: DB_CONNECTION
         value: sqlite
       - key: DB_DATABASE
