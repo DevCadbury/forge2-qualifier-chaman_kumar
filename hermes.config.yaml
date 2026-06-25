@@ -1,0 +1,141 @@
+# Hermes Agent Configuration (secrets removed)
+# Real config lives at: %LOCALAPPDATA%\hermes\config.yaml
+# Never commit the real file — it contains API keys and tokens.
+
+# ── Primary Model ─────────────────────────────────────────────────────
+model: default
+
+default:
+  # Local Ollama — free, no billing, no rate limits
+  provider: custom
+  base_url: http://127.0.0.1:11434/v1
+  api_key: ollama                       # Ollama ignores this value
+  api_mode: chat_completions
+  model: rafw007/qwen35-claude-coder:4b
+
+# ── Custom Provider (Ollama local) ────────────────────────────────────
+custom_providers:
+  - name: Local (127.0.0.1:11434)
+    base_url: http://127.0.0.1:11434/v1
+    api_key: ollama
+    model: rafw007/qwen35-claude-coder:4b
+    api_mode: chat_completions
+
+# ── MCP Server — wire Hermes to OpenClaw ──────────────────────────────
+mcp_servers:
+  openclaw:
+    command: openclaw
+    args:
+      - mcp
+      - serve
+    enabled: true
+
+# ── Agent Behaviour ───────────────────────────────────────────────────
+agent:
+  max_turns: 150
+  gateway_timeout: 1800
+  restart_drain_timeout: 180
+  api_max_retries: 3
+  tool_use_enforcement: auto
+  task_completion_guidance: true
+  parallel_tool_call_guidance: true
+  environment_probe: true
+  coding_context: auto
+  reasoning_effort: medium
+
+# ── Memory ────────────────────────────────────────────────────────────
+context:
+  engine: compressor
+  memory:
+    memory_enabled: true
+    user_profile_enabled: true
+    write_approval: false
+    memory_char_limit: 2200
+    user_char_limit: 1375
+    nudge_interval: 10
+    flush_min_turns: 6
+
+# ── Slack Integration ─────────────────────────────────────────────────
+# Tokens come from env vars — never hardcode here.
+# Set these before running: hermes
+#   SLACK_BOT_TOKEN=xoxb-...
+#   SLACK_APP_TOKEN=xapp-...
+slack:
+  require_mention: true
+  free_response_channels: ''
+  allowed_channels: ''
+  channel_prompts: {}
+
+# ── Cron / Scheduled Tasks ────────────────────────────────────────────
+# Example: autonomous progress update every 10 minutes to #agent-log
+# Configure via: hermes cron add "*/10 * * * *" "post a one-line progress update to #agent-log"
+cron:
+  provider: ''
+
+# ── Terminal ──────────────────────────────────────────────────────────
+terminal:
+  backend: local
+  timeout: 180
+  persistent_shell: true
+  lifetime_seconds: 300
+
+# ── Toolsets (Slack platform) ─────────────────────────────────────────
+platform_toolsets:
+  slack:
+    - browser
+    - clarify
+    - code_execution
+    - cronjob
+    - delegation
+    - file
+    - memory
+    - session_search
+    - skills
+    - terminal
+    - todo
+    - vision
+    - web
+
+# ── Approvals ─────────────────────────────────────────────────────────
+approvals:
+  mode: manual
+  timeout: 60
+  cron_mode: deny
+  command_allowlist:
+    - execute_code
+
+# ── Skills ────────────────────────────────────────────────────────────
+skills:
+  external_dirs: []
+  write_approval: false
+  creation_nudge_interval: 15
+
+# ── Fallback Model (optional) ─────────────────────────────────────────
+# Uncomment to enable automatic failover when Ollama is unavailable.
+# Requires GROQ_API_KEY env var.
+#
+# fallback_providers:
+#   - provider: groq
+#     model: llama-3.3-70b-versatile
+#     api_key_env: GROQ_API_KEY
+
+# ── Display ───────────────────────────────────────────────────────────
+display:
+  compact: false
+  streaming: true
+  show_reasoning: false
+  reasoning_full: false
+  memory_notifications: 'on'
+  final_response_markdown: strip
+  persistent_output: true
+
+# ── Security ──────────────────────────────────────────────────────────
+security:
+  allow_private_urls: false
+  redact_secrets: true
+
+# ── Logging ───────────────────────────────────────────────────────────
+logging:
+  level: INFO
+  max_size_mb: 5
+  backup_count: 3

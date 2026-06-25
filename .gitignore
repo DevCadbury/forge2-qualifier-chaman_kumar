@@ -1,0 +1,38 @@
+# ── Laravel backend ───────────────────────────────────────
+backend/.env
+backend/.env.*
+!backend/.env.example
+backend/vendor/
+backend/storage/logs/*.log
+backend/storage/framework/cache/
+backend/storage/framework/sessions/
+backend/storage/framework/views/
+backend/bootstrap/cache/*.php
+backend/database/database.sqlite
+backend/database/database.sqlite-shm
+backend/database/database.sqlite-wal
+
+# ── React frontend ────────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# ── Agent configs — real files live outside the repo ─────
+# openclaw.json and hermes.config.yaml in the repo are
+# already sanitized. Keep them tracked.
+# But never track the real ones if accidentally copied here.
+*.secret.*
+*.token.*
+
+# ── OS / IDE ──────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+.kiro/
+
+# ── Misc ──────────────────────────────────────────────────
+*.log
+*.zip
+*.tar.gz

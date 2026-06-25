@@ -1,0 +1,176 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background-color: #f0f2f5;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Ensure smooth transitions */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Override Ant Design button styles slightly for better consistency */
+.ant-btn {
+  font-weight: 500;
+}
+
+/* Card hover effect enhancement */
+.ant-card {
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.ant-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal styling */
+.ant-modal-header {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 20px 24px;
+}
+
+.ant-modal-body {
+  padding: 24px;
+}
+
+/* Tab styling improvements */
+.ant-tabs-tab {
+  font-weight: 500;
+}
+
+.ant-tabs-tab-active {
+  font-weight: 600;
+}
+
+/* Badge improvements */
+.ant-badge-count {
+  box-shadow: none;
+}
+
+/* Loading state styling */
+.ant-spin-container {
+  min-height: 200px;
+}
+
+/* Empty state */
+.ant-empty {
+  margin: 40px 0;
+}
+
+/* Form improvements */
+.ant-form-item-label > label {
+  font-weight: 500;
+  color: #262626;
+}
+
+/* Input focus states */
+.ant-input:focus,
+.ant-input-focused {
+  border-color: #1890ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+/* Button size consistency */
+.ant-btn-lg {
+  height: 40px;
+  padding: 6.4px 15px;
+  font-size: 16px;
+}
+
+/* Typography improvements */
+.ant-typography {
+  margin-bottom: 0;
+}
+
+/* Popconfirm styling */
+.ant-popconfirm-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Message notifications */
+.ant-message {
+  z-index: 9999;
+}
+
+/* Tooltip styling */
+.ant-tooltip {
+  max-width: 300px;
+}
+
+/* Tag styling */
+.ant-tag {
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* Avatar styling */
+.ant-avatar {
+  background-color: #1890ff;
+  font-weight: 600;
+}
+
+/* Layout improvements */
+.ant-layout {
+  background-color: #f0f2f5;
+}
+
+.ant-layout-header {
+  line-height: 64px;
+  height: 64px;
+}
+
+/* Space component improvements */
+.ant-space {
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ant-layout-header {
+    padding: 0 16px;
+  }
+
+  .ant-tabs {
+    padding: 8px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .ant-btn,
+  .ant-modal-mask,
+  .ant-modal-wrap {
+    display: none !important;
+  }
+}

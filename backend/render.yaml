@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: forge2-qualifier-chaman-api
+    runtime: php
+    # Root directory relative to the repo root
+    rootDir: backend
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      php artisan config:cache
+      php artisan route:cache
+      php artisan view:cache
+    startCommand: php artisan serve --host=0.0.0.0 --port=$PORT
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        generateValue: true
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: DB_DATABASE
+        value: /var/data/database.sqlite
+      - key: FRONTEND_URL
+        value: https://forge2-qualifier-chaman.vercel.app
+      - key: LOG_CHANNEL
+        value: stderr
+    disk:
+      name: sqlite-data
+      mountPath: /var/data
+      sizeGB: 1
