@@ -3,8 +3,8 @@ services:
     name: forge2-qualifier-chaman-api
     # Docker runtime — Render builds from the Dockerfile in backend/
     runtime: docker
-    dockerfilePath: ./backend/Dockerfile
-    dockerContext: ./backend
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
     # Render free tier
     plan: free
     envVars:
