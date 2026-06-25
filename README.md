@@ -2,7 +2,7 @@
 
 A tiny Kanban board built by a two-agent team (Hermes brain + OpenClaw hands) communicating through Slack, shipped as part of the Forge 2 Qualifier.
 
-**Live URL**: https://forge2-qualifier-chaman.vercel.app *(frontend — Vercel)*  
+**Live URL**: https://forge2-qualifier-chaman-kumar.vercel.app/ *(frontend — Vercel)*  
 **API URL**: https://forge2-qualifier-chaman.up.railway.app *(backend — Railway)*  
 **GitHub Repo**: https://github.com/chaman-kumar/forge2-qualifier-chaman
 
