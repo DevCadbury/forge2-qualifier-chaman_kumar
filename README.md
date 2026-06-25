@@ -86,57 +86,46 @@ Both agents use the same local Ollama model (`rafw007/qwen35-claude-coder:4b`). 
 
 ## Run Instructions
 
-### Prerequisites
+### Option A — Docker (recommended, matches production)
 
-- PHP 8.2+ with SQLite, OpenSSL, PDO extensions
-- Composer
-- Node.js 16+ with npm
-
-### Backend (Laravel API)
+Requires Docker Desktop.
 
 ```bash
-cd forge/backend
+# From repo root — builds backend image, starts both services
+docker compose up --build
+```
 
-# Install PHP dependencies
+- Backend API: `http://localhost:8080/api/v1`
+- Frontend: `http://localhost:5173`
+
+### Option B — Local (PHP + Node)
+
+**Prerequisites**: PHP 8.2+, Composer, Node.js 16+
+
+```bash
+# Terminal 1 — Laravel API
+cd backend
 composer install
-
-# Copy and configure environment
 cp .env.example .env
 php artisan key:generate
-
-# Create the SQLite database file
-# macOS/Linux:
-touch database/database.sqlite
-# Windows CMD:
-type nul > database\database.sqlite
-
-# Run all migrations
+touch database/database.sqlite        # Windows: type nul > database\database.sqlite
 php artisan migrate
-
-# Start the API server
 php artisan serve --port=8000
-```
 
-API is now available at `http://localhost:8000/api/v1`.
-
-Quick test:
-```bash
-curl http://localhost:8000/api/v1/boards
-# Expected: []
-```
-
-### Frontend (React)
-
-Open a second terminal:
-
-```bash
-cd forge/frontend
-
+# Terminal 2 — React frontend
+cd frontend
 npm install
 npm run dev
 ```
 
-Frontend is now available at `http://localhost:5173`.
+- Backend API: `http://localhost:8000/api/v1`
+- Frontend: `http://localhost:5173`
+
+Quick smoke test:
+```bash
+curl http://localhost:8000/api/v1/boards
+# Expected: []
+```
 
 ---
 
